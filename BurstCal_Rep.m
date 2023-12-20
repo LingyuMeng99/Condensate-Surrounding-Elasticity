@@ -33,7 +33,7 @@ E = sort(E);
 % E = E_max*rand(N,1).^(1/(theta+1));
 % E = sort(E);
 
-kRn = 5;
+kRn = 5; % R_n = kRn*R_c
 
 k_dis = 1e-7; % Dissolution rate parameter
 growth_num_max = 500; % Number of maximum growth times
