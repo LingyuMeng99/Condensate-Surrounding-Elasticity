@@ -110,7 +110,7 @@ while t <= t_total
     Pc = 2*gamma./R + E + Y.*R; % Confining pressure
     
     dV = dt * R .* (g-Pc);
-    dis_judge = rand(N,1) < k_dis.*V; % Decide whether a condensate is dissolved
+    dis_judge = rand(N,1) < k_dis.*V*dt; % Decide whether a condensate is dissolved
     dV(dis_judge) = Vn(dis_judge) - V(dis_judge); % Dissolved condensate V = Vn
     
     t = t + dt;
