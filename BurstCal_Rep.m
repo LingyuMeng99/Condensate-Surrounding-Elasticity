@@ -13,11 +13,7 @@ burst_duringtime_list_sum = []; % Burst duration for all repeats
 for repeat_i = 1:N_repeat
 
 N = 10000; % Number of nucleation sites
-t_total = 2e4;
-dt_rec = 1;
-V_tot_settimes = 1;
-noise_ratio = 0.0;
-
+dt_rec = 1; % Time interval of recording data
 
 % Parameter for E* = 0.07 of lognormal distribution
 sigma_lgn = 0.4;
@@ -33,8 +29,10 @@ E = sort(E);
 % E = sort(E);
 
 kRn = 5; % R_n = kRn*R_c
+noise_ratio = 0.0; % Noise ratio for R_n, 0 means no noise, 1 means [0,2*kRn*R_c]
 
 k_dis = 1e-7; % Dissolution rate parameter
+
 growth_num_max = 500; % Number of maximum growth times
 
 % Repeat for one E distribution
@@ -90,7 +88,7 @@ for idx_i = N_growth_max:-1:1
     end
     growth_duringtime_list = [growth_duringtime_list,mean(t_during_list)]; % Record lifetimes for all condnesate
 
-    if mean(t_delay_list)/mean(t_during_list) >= 1 && burst_check_sum < 5
+    if mean(t_delay_list)/mean(t_during_list) >= 1 && burst_check_sum < 5 % Burst condensates have longer time until burst than burst duration
         burst_count = burst_count + 1;
         burst_idx_list = [burst_idx_list,idx_i];
     else
@@ -183,7 +181,7 @@ end
 
 
 
-%% Read Exp Data From Table
+%% Read Experimental Data From Table
 
 burst_data_table = readtable('./CAST_burst_data.csv');
 
@@ -207,7 +205,7 @@ for gene_idx = 1:N_gene
 end
 
 
-%% Plot Patch
+%% Plot Patch Figures for Comparison
 
 t_decay = 3.9/log(2); % 1/mRNA degradation rate in the unit hour
 
