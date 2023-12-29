@@ -4,16 +4,15 @@ N_repeat = 5; % Number of different E repeats
 N_repeat2 = 3; % Number of repeats for the same E
 
 % Record all the data during repeat
-burst_freq_list_sum = [];
-burst_size_list_sum = [];
-burst_waittime_list_sum = [];
-burst_duringtime_list_sum = [];
-E_burst_list_sum = [];
+burst_freq_list_sum = []; % Burst frequency for all repeats
+burst_size_list_sum = []; % Volume integral with time for all repeats
+burst_waittime_list_sum = []; % Time until burst for all repeats
+burst_duringtime_list_sum = []; % Burst duration for all repeats
 
 % Repeat for generating different E distributions
 for repeat_i = 1:N_repeat
 
-N = 10000;
+N = 10000; % Number of nucleation sites
 t_total = 2e4;
 dt_rec = 1;
 V_tot_settimes = 1;
